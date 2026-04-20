@@ -143,7 +143,7 @@
     margin-left: 9px;
 }
 
-#bravo {
+/* #bravo {
     display: grid;
     gap: 5px;
     position: absolute;
@@ -153,7 +153,7 @@
     color: var(--fonce);
     border: 20px solid var(--pale);
     border-radius: 25px;
-}
+} */
 
 /* #sendCode {
     background-color: var(--pale);

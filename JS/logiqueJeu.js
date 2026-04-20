@@ -1,6 +1,7 @@
 import { PIECE, ROW, SCORE, COULEURS, PALETTE, PIECES, CHECK, UNDO, REFRESH, RESULTS, ANSWER, PIECECODE } from "./constantes.js";
+
 class GameLogic {
-    constructor(difficulty, mode) {
+    constructor(advanced, mode) {
         this.mode = mode;
         this.currentTry = 0;
         this.currentChoice = 0;
@@ -8,7 +9,7 @@ class GameLogic {
         this.maybeCode = [];
         this.stillPlaying = false;
 
-        if (difficulty) {
+        if (advanced) {
             this.maxTries = 8;
             this.maxChoices = 4;
             this.colorColumn = 3;
@@ -179,6 +180,7 @@ class GameLogic {
         if (this.currentChoice === this.maxChoices && this.stillPlaying){
             if (this.compareCodes() || this.currentTry == this.maxTries){
                 this.showAnswer();
+                this.win();
                 this.stillPlaying = false;
             }
             if (this.currentTry <= this.maxTries) {
@@ -242,6 +244,14 @@ class GameLogic {
         }
         document.getElementById("messageCode").innerHTML = answer;
         document.getElementById("palette").style.display = "none";
+    }
+
+    async win() {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        let answer = prompt('Félicitation! Vous avez gagné!\n\n Entrez votre nom:');
+        const infos = [this.currentChoice, answer];
+        localStorage.setItem('newWinner', JSON.stringify(infos));
+        window.location.href = "historique.html";
     }
 
     secretBox() {

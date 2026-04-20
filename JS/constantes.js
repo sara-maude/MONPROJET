@@ -29,3 +29,5 @@ export const CHECK = document.getElementById("check");
 export const UNDO = document.getElementById("undo");
 export const REFRESH = document.getElementById("refresh");
 export const PIECECODE = document.getElementsByClassName("piece-code");
+
+// export const DELAY = (ms) => new Promise(resolve => setTimeout(resolve, ms));
